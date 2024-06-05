@@ -27,7 +27,8 @@
   "types": "./dist/main.d.mts",
   "files": [
     "dist",
-    "@types"
+    "@types",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",
