@@ -1,7 +1,7 @@
 # unplugin-lit-sass
 
 ## Description
-
+`unplugin` to allow `.scss` files to be imported as css variables in lit.
 
 ## Getting Started
 
@@ -55,4 +55,26 @@ export class MyElement extends LitElement {
     // ...
   }
 }
+```
+
+## Options
+### `fileType`
+#### Description
+File type to be processed.
+#### Default
+`[".scss", ".sass"]`
+#### Type
+`Array<`.${string}` | `?${string}`>`
+
+
+### All options
+```ts
+export type Options = {
+  /**
+   * File type to be processed.
+   *
+   * @default [".scss", ".sass"]
+   */
+  fileType?: Array<`.${string}` | `?${string}`>;
+};
 ```
