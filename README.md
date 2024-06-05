@@ -26,7 +26,7 @@ export default defineConfig({
 
 `src/vite-env.d.ts`
 ```ts
-/// <reference types="unplugin-lit-sass" />
+/// <reference types="unplugin-lit-sass/@types" />
 ```
 </details>
 
