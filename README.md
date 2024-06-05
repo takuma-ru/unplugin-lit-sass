@@ -32,14 +32,18 @@ export default defineConfig({
 
 ## Usage
 ### 1. Create SCSS file
+Create .scss.
+e.g.) `lit-component-name.scss`.
 
 ### 2. Import SCSS file from Lit component file
+> [!WARING]
+> The path name must end with `?litSass`.
+> Giving this query will run the plugin
+
 ```ts
-import styles from "./lit-component-name.scss";
-```
-or
-```ts
-import { styles } from "./lit-component-name.scss";
+import styles from "./lit-component-name.scss?litSass";
+// or
+import { styles } from "./lit-component-name.scss?litSass";
 ```
 
 ### 3. Apply scss
