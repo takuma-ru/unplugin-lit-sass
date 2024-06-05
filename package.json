@@ -1,0 +1,18 @@
+{
+  "name": "lit-sass-ws",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "p:core": "pnpm -C packages/core",
+    "p:unplugin": "pnpm -C packages/unplugin",
+    "pg:vite": "pnpm -C playgrounds/vite",
+    "build:all": "pnpm p:core build && pnpm p:unplugin build"
+  },
+  "volta": {
+    "node": "22.1.0",
+    "pnpm": "9.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3"
+  }
+}

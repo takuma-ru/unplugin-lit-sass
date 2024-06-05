@@ -1,0 +1,54 @@
+{
+  "name": "unplugin-lit-sass",
+  "private": false,
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/main.mjs",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/main.mjs",
+        "types": "./dist/main.d.mts"
+      },
+      "require": {
+        "default": "./dist/main.js",
+        "types": "./dist/main.d.ts"
+      }
+    },
+    "./@types": {
+      "import": {
+        "default": "./@types/index.d.ts"
+      },
+      "require": {
+        "default": "./@types/index.d.ts"
+      }
+    }
+  },
+  "types": "./dist/main.d.mts",
+  "files": [
+    "dist",
+    "@types"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "biome lint --apply ./src",
+    "format": "biome format --apply ./src",
+    "check": "biome check --apply ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.1",
+    "lit": "^3.1.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@unplugin-lit-sass/core": "workspace:*",
+    "unplugin": "^1.10.1"
+  },
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  }
+}
