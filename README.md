@@ -28,7 +28,7 @@ export default defineConfig({
 ```ts
 /// <reference types="unplugin-lit-sass" />
 ```
-<details>
+</details>
 
 ## Usage
 ### 1. Create SCSS file
