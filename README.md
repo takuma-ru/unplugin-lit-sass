@@ -66,9 +66,9 @@ export class MyElement extends LitElement {
 #### Description
 File type to be processed.
 #### Default
-`[".scss", ".sass"]`
+```[".scss", ".sass"]```
 #### Type
-`Array<`.${string}` | `?${string}`>`
+```Array<`.${string}` | `?${string}`>```
 
 
 ### All options
