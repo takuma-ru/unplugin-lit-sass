@@ -36,7 +36,7 @@ Create .scss.
 e.g.) `lit-component-name.scss`.
 
 ### 2. Import SCSS file from Lit component file
-> [!WARING]
+> [!WARNING]
 > The path name must end with `?litSass`.
 > Giving this query will run the plugin
 
