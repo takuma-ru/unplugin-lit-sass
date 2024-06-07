@@ -100,7 +100,7 @@ jobs:
           -B main \
           -t ":bookmark: Update package.json" \
           -a "${{ github.actor }}"  \
-          -F ./.github/workflows/PR_template.md
+          -F ./.github/pull_request_template.md
 
   create-github-release:
     needs: release
