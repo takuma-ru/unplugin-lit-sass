@@ -30,6 +30,13 @@ export const releaseAction = async (options: unknown) => {
     cmd(
       `pnpm publish --filter ${packageName} --no-git-checks --provenance --access public`
     );
+
+    // Output the branch name
+    console.log(branchName);
+    /**
+     * branch_name=$(node release.js major)
+     * echo "The release was made on branch: $branch_name"
+     */
   } catch (error) {
     if (error instanceof z.ZodError) {
       error.errors.map((error) => {
