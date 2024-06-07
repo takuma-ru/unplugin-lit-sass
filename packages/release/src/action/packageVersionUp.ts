@@ -44,7 +44,7 @@ export const packageVersionUp = ({ level, pre }: ReleaseSchemaType) => {
   consola.info(`New version: ${packageJson.version}`);
 
   return {
-    newVersion: packageJson.version,
-    packageName: packageJson.name,
+    newVersion: packageJson.version as string,
+    packageName: packageJson.name as string,
   };
 };

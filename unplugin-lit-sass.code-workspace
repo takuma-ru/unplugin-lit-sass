@@ -17,6 +17,10 @@
       "path": "packages/unplugin"
     },
     {
+      "name": "p:release",
+      "path": "packages/release"
+    },
+    {
       "name": "----------",
       "path": "b"
     },

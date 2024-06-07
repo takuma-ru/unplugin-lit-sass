@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import consola from "consola";
 import { z } from "zod";
 import { BUILD_CMD, PACKAGE_JSON_PATH } from "../constants/config";
@@ -21,9 +22,9 @@ export const releaseAction = async (options: unknown) => {
     cmd(BUILD_CMD);
 
     // Commit and push the changes
-    cmd(`git add ${PACKAGE_JSON_PATH}`);
+    cmd(`git add ${join(__dirname, PACKAGE_JSON_PATH)}`);
     cmd(`git commit -m "Release version ${newVersion}"`);
-    cmd("git push origin HEAD");
+    cmd(`git push origin ${branchName}`);
 
     // Publish the package
     cmd(
