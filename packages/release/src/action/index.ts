@@ -18,23 +18,13 @@ export const releaseAction = async (options: unknown) => {
 
     const { newVersion, packageName } = packageVersionUp({ level, pre });
 
-    // Build the package
     cmd(BUILD_CMD);
 
-    // Commit and push the changes
     cmd(`git add ${join(__dirname, PACKAGE_JSON_PATH)}`);
     cmd(`git commit -m "Release version ${newVersion}"`);
     cmd(`git push origin ${branchName}`);
 
-    // Publish the package
     cmd(`pnpm publish --filter ${packageName} --no-git-checks`);
-
-    // Output the branch name
-    // console.log(branchName);
-    /**
-     * branch_name=$(node release.js major)
-     * echo "The release was made on branch: $branch_name"
-     */
   } catch (error) {
     if (error instanceof z.ZodError) {
       error.errors.map((error) => {
