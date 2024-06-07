@@ -44,11 +44,12 @@
 
     "editor.codeActionsOnSave": {
       "quickfix.biome": "explicit",
-      "source.organizeImports.biome": "explicit"
+      "source.organizeImports.biome": "explicit",
+      "source.addMissingImports": "explicit"
     },
 
     "terminal.integrated.cwd": "${workspaceFolder}",
 
-    "cSpell.words": ["biomejs", "rolldown", "Rspack"]
+    "cSpell.words": ["biomejs", "consola", "rolldown", "Rspack"]
   }
 }

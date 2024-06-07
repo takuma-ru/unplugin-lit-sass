@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "p:core": "pnpm -C packages/core",
+    "p:release": "pnpm -C packages/release",
     "p:unplugin": "pnpm -C packages/unplugin",
     "pg:vite": "pnpm -C playgrounds/vite",
-    "build:all": "pnpm p:core build && pnpm p:unplugin build"
+    "build:all": "pnpm p:core build && pnpm p:unplugin build",
+    "release:package": "node packages/release/dist/main.js"
   },
   "volta": {
     "node": "22.1.0",
