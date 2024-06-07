@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { convertScssToCss } from "@unplugin-lit-sass/core";
 import type { UnpluginFactory } from "unplugin";
 import { createUnplugin } from "unplugin";
+import { convertScssToCss } from "unplugin-lit-sass-core";
 
 export type Options = {
   /**

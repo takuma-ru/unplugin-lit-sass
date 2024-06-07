@@ -60,12 +60,12 @@ importers:
 
   packages/unplugin:
     dependencies:
-      '@unplugin-lit-sass/core':
-        specifier: workspace:*
-        version: link:../core
       unplugin:
         specifier: ^1.10.1
         version: 1.10.1
+      unplugin-lit-sass-core:
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       '@types/node':
         specifier: ^20.14.1
