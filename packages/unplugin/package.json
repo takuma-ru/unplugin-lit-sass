@@ -1,9 +1,32 @@
 {
   "name": "unplugin-lit-sass",
   "private": false,
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.0.1-beta.0",
+  "description": "SCSS files to be imported as css variables in lit.",
   "main": "dist/main.mjs",
+  "author": "takuma-ru <takuma-ru@takumaru.dev> (https://github.com/takuma-ru/)",
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "lit",
+    "lit-element",
+    "lit-html",
+    "unplugin"
+  ],
+  "homepage": "https://github.com/takuma-ru/unplugin-lit-sass",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takuma-ru/unplugin-lit-sass"
+  },
+  "bugs": {
+    "url": "https://github.com/takuma-ru/unplugin-lit-sass/issues",
+    "email": "takuma-ru@takumaru.dev"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "exports": {
     ".": {
       "import": {
@@ -36,8 +59,6 @@
     "format": "biome format --apply ./src",
     "check": "biome check --apply ./src"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.1",
