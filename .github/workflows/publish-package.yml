@@ -88,9 +88,7 @@ jobs:
       - name: Release
         id: release
         run: |
-          OUTPUT=$(pnpm p:release build && pnpm release:package -l ${{ inputs.releaseLevel }} ${{ steps.pre.outputs.pre }})
-          LAST_LINE=$(echo "$OUTPUT" | tail -n 1)
-          echo "branchName=$LAST_LINE" >> $GITHUB_OUTPUT
+          pnpm p:release build && pnpm release:package -l ${{ inputs.releaseLevel }} ${{ steps.pre.outputs.pre }}
         shell: bash
 
       - name: Create PR
