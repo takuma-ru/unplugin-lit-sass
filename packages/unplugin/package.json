@@ -1,7 +1,7 @@
 {
   "name": "unplugin-lit-sass",
   "private": false,
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "SCSS files to be imported as css variables in lit.",
   "main": "dist/main.mjs",
   "author": "takuma-ru <takuma-ru@takumaru.dev> (https://github.com/takuma-ru/)",
