@@ -3,14 +3,14 @@ import { join } from "node:path";
 import consola from "consola";
 import { type ReleaseType, inc } from "semver";
 import { PACKAGE_JSON_PATH } from "../constants/config";
+import { cmd } from "../utils/cmd";
 import type { ReleaseSchemaType } from "../validation/validation";
 
 export const packageVersionUp = ({ level, pre }: ReleaseSchemaType) => {
   const packageJsonPath = join(__dirname, PACKAGE_JSON_PATH);
   let packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
 
-  // const currentVersion = cmd(`npm show ${packageJson.name} version`).trim();
-  const currentVersion = "1.0.0-beta.1";
+  const currentVersion = cmd(`npm show ${packageJson.name} version`).trim();
 
   consola.info(`Current version: ${currentVersion}`);
 
