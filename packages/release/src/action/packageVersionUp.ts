@@ -3,12 +3,15 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import consola from "consola";
 import { type ReleaseType, inc } from "semver";
-import { PACKAGE_JSON_PATH } from "../constants/config";
 import type { ReleaseSchemaType } from "../validation/validation";
 
-export const packageVersionUp = ({ level, pre }: ReleaseSchemaType) => {
-  const packageJsonPath = join(__dirname, PACKAGE_JSON_PATH);
-  let packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+export const packageVersionUp = ({
+  level,
+  pre,
+  packageJsonPath,
+}: ReleaseSchemaType & { packageJsonPath: string }) => {
+  const JoinedPackageJsonPath = join(__dirname, packageJsonPath);
+  let packageJson = JSON.parse(readFileSync(JoinedPackageJsonPath, "utf8"));
 
   const currentVersion = execSync(`npm show ${packageJson.name} version`, {
     encoding: "utf8",
@@ -40,8 +43,8 @@ export const packageVersionUp = ({ level, pre }: ReleaseSchemaType) => {
   };
   const newVersion = inc(currentVersion, getReleaseType(), "beta");
   packageJson.version = newVersion;
-  writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+  writeFileSync(JoinedPackageJsonPath, JSON.stringify(packageJson, null, 2));
+  packageJson = JSON.parse(readFileSync(JoinedPackageJsonPath, "utf8"));
 
   consola.info(`New version: ${packageJson.version}`);
 
