@@ -74,7 +74,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Set .npmrc
-        run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > packages/unplugin/.npmrc
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > packages/unplugin/.npmrc
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > packages/core/.npmrc
 
       - name: Set pre value
         id: pre
