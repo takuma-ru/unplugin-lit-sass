@@ -68,7 +68,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "unplugin-lit-sass-core": "workspace:*",
+    "@unplugin-lit-sass/core": "workspace:*",
     "unplugin": "^1.10.1"
   },
   "peerDependencies": {

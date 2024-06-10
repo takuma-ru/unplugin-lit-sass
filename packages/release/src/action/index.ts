@@ -7,31 +7,37 @@ import { releaseSchema } from "../validation/validation";
 import { packageVersionUp } from "./packageVersionUp";
 
 export const releaseAction = async (options: unknown) => {
-  try {
-    const { level, pre } = releaseSchema.parse(options);
+  PACKAGE_JSON_PATH.map((packageJsonPath) => {
+    try {
+      const { level, pre } = releaseSchema.parse(options);
 
-    const branchName = `release/${new Date()
-      .toISOString()
-      .replace(/[-:.]/g, "_")}`;
-    cmd(`git switch -c ${branchName}`);
-    cmd(`git push --set-upstream origin ${branchName}`);
+      const branchName = `release/${new Date()
+        .toISOString()
+        .replace(/[-:.]/g, "_")}`;
+      cmd(`git switch -c ${branchName}`);
+      cmd(`git push --set-upstream origin ${branchName}`);
 
-    const { newVersion, packageName } = packageVersionUp({ level, pre });
-
-    cmd(BUILD_CMD);
-
-    cmd(`git add ${join(__dirname, PACKAGE_JSON_PATH)}`);
-    cmd(`git commit -m "Release version ${newVersion}"`);
-    cmd(`git push origin ${branchName}`);
-
-    cmd(`pnpm publish --filter ${packageName} --no-git-checks`);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      error.errors.map((error) => {
-        consola.error(error.message);
+      const { newVersion, packageName } = packageVersionUp({
+        level,
+        pre,
+        packageJsonPath,
       });
-    } else {
-      consola.error(error);
+
+      cmd(BUILD_CMD);
+
+      cmd(`git add ${join(__dirname, packageJsonPath)}`);
+      cmd(`git commit -m "Release version ${newVersion}"`);
+      cmd(`git push origin ${branchName}`);
+
+      cmd(`pnpm publish --filter ${packageName} --no-git-checks`);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        error.errors.map((error) => {
+          consola.error(error.message);
+        });
+      } else {
+        consola.error(error);
+      }
     }
-  }
+  });
 };
