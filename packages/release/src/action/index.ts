@@ -26,10 +26,12 @@ export const releaseAction = async (options: unknown) => {
       cmd(BUILD_CMD);
 
       cmd(`git add ${join(__dirname, packageJsonPath)}`);
-      cmd(`git commit -m "Release version ${newVersion}"`);
+      cmd(`git commit -m "Release ${[packageName]} ${newVersion}"`);
       cmd(`git push origin ${branchName}`);
 
       cmd(`pnpm publish --filter ${packageName} --no-git-checks`);
+
+      cmd("git switch main");
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.map((error) => {
