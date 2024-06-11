@@ -1,7 +1,7 @@
 {
   "name": "@unplugin-lit-sass/core",
   "private": false,
-  "version": "0.0.1-beta.11",
+  "version": "0.0.1-beta.13",
   "author": "takuma-ru <takuma-ru@takumaru.dev> (https://github.com/takuma-ru/)",
   "keywords": [
     "css",
