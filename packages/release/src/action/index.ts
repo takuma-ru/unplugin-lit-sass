@@ -7,15 +7,15 @@ import { releaseSchema } from "../validation/validation";
 import { packageVersionUp } from "./packageVersionUp";
 
 export const releaseAction = async (options: unknown) => {
+  const branchName = `release/${new Date()
+    .toISOString()
+    .replace(/[-:.]/g, "_")}`;
+  cmd(`git switch -c ${branchName}`);
+  cmd(`git push --set-upstream origin ${branchName}`);
+
   PACKAGE_JSON_PATH.map((packageJsonPath) => {
     try {
       const { level, pre } = releaseSchema.parse(options);
-
-      const branchName = `release/${new Date()
-        .toISOString()
-        .replace(/[-:.]/g, "_")}`;
-      cmd(`git switch -c ${branchName}`);
-      cmd(`git push --set-upstream origin ${branchName}`);
 
       const { newVersion, packageName } = packageVersionUp({
         level,
@@ -30,8 +30,6 @@ export const releaseAction = async (options: unknown) => {
       cmd(`git push origin ${branchName}`);
 
       cmd(`pnpm publish --filter ${packageName} --no-git-checks`);
-
-      cmd("git switch main");
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.map((error) => {
