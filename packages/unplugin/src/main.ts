@@ -27,48 +27,31 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
     enforce: "pre",
 
     resolveId(id, importer) {
-      if (
-        fileType.some(
-          (type) => id.includes(type) && id.endsWith(QUERY_PARAM_NAME)
-        )
-      ) {
+      const isLitSass = fileType.some(
+        (type) => id.includes(type) && id.endsWith(QUERY_PARAM_NAME)
+      );
+
+      if (isLitSass) {
         const newId = id.replace(QUERY_PARAM_NAME, CONVERTED_FILE_TYPE);
 
-        // importerのパスを保存
-        if (importer) {
-          this.addWatchFile(importer);
+        if (!importer) {
+          return newId;
         }
 
-        return newId;
+        return resolve(dirname(importer), newId);
       }
     },
 
     load(id) {
       if (id.endsWith(CONVERTED_FILE_TYPE)) {
-        // importerのパスを取得
-        const importer = this.getWatchFiles();
+        try {
+          const originalId = id.replace(CONVERTED_FILE_TYPE, "");
 
-        const content = importer
-          .map((importer) => {
-            // 相対パスを絶対パスに変換
-            const absoluteId = resolve(
-              dirname(importer),
-              id.replace(CONVERTED_FILE_TYPE, "")
-            );
-
-            let content: string | undefined;
-
-            try {
-              content = readFileSync(absoluteId, "utf-8");
-            } catch (error) {
-              content = undefined;
-            }
-
-            return content;
-          })
-          .filter((content) => content) as unknown as string[];
-
-        return content[0];
+          this.addWatchFile(originalId);
+          return readFileSync(originalId, "utf-8");
+        } catch (error) {
+          return undefined;
+        }
       }
     },
 
